@@ -6,11 +6,18 @@ import { productController } from "../controller/index.js";
 
 // Middlewares
 import protect from "../middleware/protect.js";
+import restrictedTo from "../middleware/restrictedTo.js";
 
-const { addproduct } = productController;
+const { addproduct, deleteProduct, updateProduct } = productController;
 
 const router = express.Router();
 
-router.post("/", addproduct);
+router.use(protect);
+
+router.post("/", restrictedTo("admin"), addproduct);
+
+router.delete("/:prodId", restrictedTo("admin"), deleteProduct);
+
+router.patch("/:prodId", restrictedTo("admin"), updateProduct);
 
 export default router;

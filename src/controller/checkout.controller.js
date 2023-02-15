@@ -24,3 +24,21 @@ export const checkout = async (req, res) => {
     order_id: order_id,
   });
 };
+
+export const checkoutOrder = async (req, res) => {
+  const { type, message, statusCode, checkoutList } =
+    await checkoutService.checkoutOrder();
+
+  if (type === "Error") {
+    return res.status(statusCode).json({
+      type,
+      message: message,
+    });
+  }
+
+  return res.status(statusCode).json({
+    type,
+    message: message,
+    checkoutList: checkoutList,
+  });
+};

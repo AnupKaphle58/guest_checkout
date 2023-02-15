@@ -27,3 +27,52 @@ export const addproduct = async (body) => {
     };
   }
 };
+
+export const deleteProduct = async (prodId) => {
+  const product = await Product.findById(prodId);
+
+  if (!product) {
+    return {
+      type: "Error",
+      message: `Product not found`,
+      statusCode: 404,
+    };
+  }
+  await Product.findByIdAndDelete(prodId);
+  return {
+    type: "Success",
+    message: "successfulProductDelete",
+    statusCode: 200,
+  };
+};
+
+export const updateProduct = async (prodId, body) => {
+  const product = await Product.findById(prodId);
+
+  if (!product) {
+    return {
+      type: "Error",
+      message: "Product not found",
+      statusCode: 404,
+    };
+  }
+
+  if (!body.name && !body.price) {
+    return {
+      type: "Error",
+      message: "Please provide fields value to update",
+      statusCode: 401,
+    };
+  }
+  const result = await Product.findByIdAndUpdate(prodId, body, {
+    new: true,
+    runValidators: true,
+  });
+
+  return {
+    type: "Success",
+    message: "Successfully updated product details",
+    statusCode: 200,
+    result,
+  };
+};

@@ -1,5 +1,5 @@
 //model
-import { Product, Cart } from "../models/index.js";
+import { Product } from "../models/index.js";
 
 export const createcart = async (body) => {
   let totalPrice = 0;

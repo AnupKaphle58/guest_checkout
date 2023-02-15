@@ -1,7 +1,7 @@
 import { signup, signin } from "./auth.service.js";
-import { addproduct } from "./product.service.js";
+import { addproduct, deleteProduct, updateProduct } from "./product.service.js";
 import { createcart } from "./cart.service.js";
-import { checkout } from "./checkout.service.js";
+import { checkout, checkoutOrder } from "./checkout.service.js";
 
 const authService = {
   signup,
@@ -10,6 +10,8 @@ const authService = {
 
 const productService = {
   addproduct,
+  deleteProduct,
+  updateProduct,
 };
 
 const cartService = {
@@ -18,6 +20,7 @@ const cartService = {
 
 const checkoutService = {
   checkout,
+  checkoutOrder,
 };
 
 export { authService, productService, cartService, checkoutService };

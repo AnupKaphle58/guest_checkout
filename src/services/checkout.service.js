@@ -41,3 +41,28 @@ export const checkout = async (body, cart) => {
     };
   }
 };
+
+export const checkoutOrder = async () => {
+  try {
+    const checkoutList = await Checkout.find();
+    if (!checkoutList) {
+      return {
+        type: "Error",
+        message: "Check out list is empty",
+        statusCode: 400,
+      };
+    }
+    return {
+      type: "Success",
+      message: "Here is your checkout list",
+      statusCode: 201,
+      checkoutList: checkoutList,
+    };
+  } catch (error) {
+    return {
+      type: "Error",
+      message: error,
+      statusCode: 400,
+    };
+  }
+};

@@ -41,14 +41,19 @@ export const signin = async (req, res) => {
     });
   }
   // 3) If everything is OK, send data
+  const role = user.role;
   return res
-    .cookie("token", tokens, {
-      httpOnly: true,
-      secure: false,
-      path: "/",
-      maxAge: 60 * 1000 * 5,
-      sameSite: false,
-    })
+    .cookie(
+      "token",
+      { tokens, role },
+      {
+        httpOnly: true,
+        secure: false,
+        path: "/",
+        maxAge: 60 * 1000 * 5,
+        sameSite: false,
+      }
+    )
     .status(statusCode)
     .json({
       type,

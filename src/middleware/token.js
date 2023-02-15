@@ -14,6 +14,6 @@ export const generateToken = (userId, secret = config.jwt.secret) => {
 };
 
 export const verifyToken = async (token) => {
-  const payload = jwt.verify(token, config.jwt.secret);
+  const payload = jwt.verify(token.tokens, config.jwt.secret);
   return payload;
 };

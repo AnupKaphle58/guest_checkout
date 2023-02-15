@@ -9,8 +9,8 @@ This app allows guest user to place an order with creating an account. The admin
   - SignUp [Public]
   - Tokens [User]
 - Product
-  - View Producy[Public]
-  - Create product[Admin]
+  - View Product[Public]
+  - Add product[Admin]
   - Update product [Admin]
   - Delete product [Admin]
   - Place an order [Public]
@@ -22,6 +22,12 @@ npm install
 cd /src
 node server.js
 ```
+
+## Guest checkout flow
+
+- User can add product to their cart @ /api/cart
+- Cart details is saved in cookies for now.
+- Then user can checkout @ /api/checkout to place an order
 
 ## Built With
 
